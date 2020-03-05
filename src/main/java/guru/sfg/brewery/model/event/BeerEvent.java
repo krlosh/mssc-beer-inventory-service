@@ -1,5 +1,6 @@
-package guru.sfg.common.events;
+package guru.sfg.brewery.model.event;
 
+import guru.sfg.brewery.model.BeerDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

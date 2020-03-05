@@ -1,6 +1,7 @@
-package guru.sfg.common.events;
+package guru.sfg.brewery.model.event;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import guru.sfg.brewery.model.BeerDto;
 
 public class NewInventoryEvent extends BeerEvent {
 

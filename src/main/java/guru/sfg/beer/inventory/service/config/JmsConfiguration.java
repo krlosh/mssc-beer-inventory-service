@@ -13,7 +13,8 @@ public class JmsConfiguration {
     public static final String MY_QUEUE ="my-hello-world";
     public static final String MY_SEND_RCV_QUEUE ="replybacktome";
     public static final String NEW_INVENTORY_QUEUE = "new-inventory";
-
+    public static final String ALLOCATE_ORDER_QUEUE = "allocate-order";
+    public static final String ALLOCATE_ORDER_RESPONSE_QUEUE = "allocate-order-response";
     @Bean
     public MessageConverter messageConverter(ObjectMapper mapper){
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();

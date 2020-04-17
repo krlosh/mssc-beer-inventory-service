@@ -18,7 +18,7 @@ public class JmsConfiguration {
     public static final String DEALLOCATE_ORDER_QUEUE = "deallocate-order" ;
 
     @Bean
-    public MessageConverter messageConverter(ObjectMapper mapper){
+    public MessageConverter jacksonJmsMessageConverter(ObjectMapper mapper){
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
         converter.setTypeIdPropertyName("_type");

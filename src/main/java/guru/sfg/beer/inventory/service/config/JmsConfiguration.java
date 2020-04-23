@@ -17,12 +17,12 @@ public class JmsConfiguration {
     public static final String ALLOCATE_ORDER_RESPONSE_QUEUE = "allocate-order-response";
     public static final String DEALLOCATE_ORDER_QUEUE = "deallocate-order" ;
 
-    @Bean
-    public MessageConverter jacksonJmsMessageConverter(ObjectMapper mapper){
+    @Bean // Serialize message content to json using TextMessage
+    public MessageConverter jacksonJmsMessageConverter(ObjectMapper objectMapper) {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
         converter.setTypeIdPropertyName("_type");
-        converter.setObjectMapper(mapper);
+        converter.setObjectMapper(objectMapper);
         return converter;
     }
 }

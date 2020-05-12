@@ -1,8 +1,8 @@
 package guru.sfg.beer.inventory.service.services;
 
 import guru.sfg.beer.inventory.service.config.JmsConfiguration;
-import guru.sfg.brewery.model.event.AllocateOrderRequest;
-import guru.sfg.brewery.model.event.AllocateOrderResult;
+import guru.sfg.brewery.model.events.AllocateOrderRequest;
+import guru.sfg.brewery.model.events.AllocateOrderResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -20,10 +20,10 @@ public class AllocationRequestListener {
     @JmsListener(destination = JmsConfiguration.ALLOCATE_ORDER_QUEUE)
     public void listen(AllocateOrderRequest request) {
         AllocateOrderResult.AllocateOrderResultBuilder builder = AllocateOrderResult.builder();
-        builder .beerOrder(request.getBeerOrder());
+        builder .beerOrderDto(request.getBeerOrderDto());
 
         try {
-            Boolean allocationResult = allocationService.allocateOrder(request.getBeerOrder());
+            Boolean allocationResult = allocationService.allocateOrder(request.getBeerOrderDto());
             if(allocationResult) {
                 builder.pendingInventory(false);
             }else {
@@ -31,7 +31,7 @@ public class AllocationRequestListener {
             }
             builder.allocationError(false);
         }catch (Exception e) {
-            log.error("Allocation failed for order id" + request.getBeerOrder().getId());
+            log.error("Allocation failed for order id" + request.getBeerOrderDto().getId());
             builder.allocationError(true);
         }
 
